@@ -98,9 +98,9 @@ const DarshBoard = () => {
         </div>
       </div>
       {/* bottom */}
-      <div className="w-full flex flex-col xl:flex-row gap-3  rounded-2xl">
+      <div className="w-full flex flex-col 2xl:flex-row gap-3  rounded-2xl">
         {/* left */}
-        <div className="bg-white rounded-2xl p-6 xl:w-2/3 w-full ">
+        <div className="bg-white rounded-2xl p-6 2xl:w-2/3 w-full ">
           <h6 className="text-xl pb-6 font-semibold text-gray-500">
             Hiện trạng yêu cầu thao tác
           </h6>
@@ -143,7 +143,7 @@ const DarshBoard = () => {
           </table>
         </div>
         {/* right */}
-        <div className="bg-white flex flex-col  rounded-2xl p-6 xl:w-1/3 w-full">
+        <div className="bg-white flex flex-col  rounded-2xl p-6 2xl:w-1/3 w-full">
           <h6 className="text-xl pb-6 font-semibold text-gray-500">
             Tiếp nhận thắc mắc
           </h6>
@@ -173,7 +173,9 @@ const DarshBoard = () => {
               </tr>
               <tr class="border block">
                 <td class="p-3 text-gray-500 block  items-center gap-3  ">
-                  <p class="cursor-pointer  truncate ">Bài viết đã được sửa chữa.</p>
+                  <p class="cursor-pointer  truncate ">
+                    Bài viết đã được sửa chữa.
+                  </p>
                 </td>
               </tr>
               <tr class="border block">
