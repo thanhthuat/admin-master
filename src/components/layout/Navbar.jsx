@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { MdOutlineLogout } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { activeMenu, setActiveMenu, setScreenSize, screenSize } =
     useStateContext();
+  const navigate = useNavigate();
   const name = localStorage.getItem("name");
   const handleLogout = () => {
     navigate("/login");
