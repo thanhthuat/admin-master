@@ -75,7 +75,7 @@ export const earningData = [
     icon: <ImUsers />,
     amount: 231,
     percentage: "-12%",
-    title: "Tổng khách hàng",
+    title: "Tổng khách hàng đã đăng kí",
     textColor: "text-sky-600",
     bgColor: "bg-cyan-200",
   },

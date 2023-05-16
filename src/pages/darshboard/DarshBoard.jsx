@@ -10,7 +10,7 @@ const DarshBoard = () => {
   return (
     <div className=" flex px-3 w-full flex-col gap-4 items-start">
       {/* card */}
-      <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full  gap-2">
+      <div className="grid 2xl:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full  gap-2">
         {earningData.map((item, index) => (
           <div
             key={index}
