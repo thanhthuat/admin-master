@@ -1,7 +1,9 @@
-import { Alert } from "antd";
+import { Alert, Input, Space } from "antd";
 import moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
+import { EyeTwoTone } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,29 +18,49 @@ const Login = () => {
 
   const [inputValues, setinputValues] = useState({});
   const [isError, setIsError] = useState(false);
-
-  const handleInputChange = ({ target }) => {
-    const { name, value } = target;
-    setinputValues((prev) => ({ ...prev, [name]: value }));
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const form = useForm();
+  const { control, handleSubmit } = form;
+  const onSubmit = (data) => {
     const user = login.find(
       (item) =>
-        item.username === inputValues?.username &&
-        item.password === inputValues?.password
+        item.username === data?.username &&
+        item.password === data?.password
     );
 
     if (!user) {
       setIsError(true);
       return;
     }
-    
+
     localStorage.setItem("isLogin", true);
     localStorage.setItem("role", user.role);
     localStorage.setItem("name", user.name);
     navigate("/");
   };
+
+  // const handleInputChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   setinputValues((prev) => ({ ...prev, [name]: value }));
+  // };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   const user = login.find(
+  //     (item) =>
+  //       item.username === inputValues?.username &&
+  //       item.password === inputValues?.password
+  //   );
+
+  //   if (!user) {
+  //     setIsError(true);
+  //     return;
+  //   }
+
+  //   localStorage.setItem("isLogin", true);
+  //   localStorage.setItem("role", user.role);
+  //   localStorage.setItem("name", user.name);
+  //   navigate("/");
+  // };
 
   return (
     <div class="w-full min-h-screen bg-gray-50 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
@@ -54,30 +76,64 @@ const Login = () => {
             showIcon
           />
         )}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div class="mb-4">
             <label class="block mb-1" for="email">
               Tài khoản
             </label>
-            <input
+            <Controller
+              name={"email"}
+              control={control}
+              render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { error },
+              }) => (
+                <Input
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  className="py-2 px-3 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"
+                />
+              )}
+            />
+            {/* <input
               onChange={handleInputChange}
               id="email"
               type="text"
               name="username"
-              class="py-2 px-3 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"
-            />
+              className="py-2 px-3 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"
+            />*/}
           </div>
           <div class="mb-4">
             <label class="block mb-1" for="password">
               Mật khẩu
             </label>
-            <input
+            <Controller
+              name={"password"}
+              control={control}
+              // rules={rules}
+              render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { error },
+              }) => (
+                <Input.Password
+                  name={name}
+                  value={value}
+                  placeholder="input password"
+                  onChange={onChange}
+                  // className="py-2 px-3 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"
+                  className="py-2 px-3  w-full"
+                />
+              )}
+            />
+
+            {/* <input
               onChange={handleInputChange}
               id="password"
               type="password"
               name="password"
               class="py-2 px-3 border border-gray-300 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"
-            />
+            /> */}
           </div>
           {/* <div class="mt-6 flex items-center justify-between">
             <div class="flex items-center">
