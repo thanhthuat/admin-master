@@ -5,6 +5,7 @@ import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
 import TableDataCustom from "../../components/common/TableDataCustom";
 import moment from "moment";
 import { Link, NavLink } from "react-router-dom";
+import SearchFillter from "./search-fillter";
 
 const columns = [
   {
@@ -85,7 +86,8 @@ const ClientManament = () => {
       <div className="text-2xl pb-10 font-bold uppercase text-gray-600 ">
         Quản lý khách hàng
       </div>
-      <div
+      <SearchFillter/>
+      {/* <div
         style={{ borderColor: currentColor }}
         className="w-full border-t-4 2xl:flex-nowrap flex-wrap text-sm border-y-3 border-y-teal-300 flex gap-7 items-center bg-white p-6"
       >
@@ -126,7 +128,7 @@ const ClientManament = () => {
             <AiOutlineSearch />
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="bg-white border-t-4 my-6 ">
         <div className="float-right">
           <NavLink

@@ -1,26 +1,37 @@
 import { Input, Radio, Select } from "antd";
 import { DatePicker } from "antd";
+import { useForm } from "react-hook-form";
 import { BiSave } from "react-icons/bi";
 import { BsListStars } from "react-icons/bs";
+import InputForm from "../../components/common/form/input-form";
+import SelectForm from "../../components/common/form/select-form";
+import DateForm from "../../components/common/form/date-form";
+import RadioForm from "../../components/common/form/radio-form";
+import TextareaForm from "../../components/common/form/textarea-form";
 const { RangePicker } = DatePicker;
 
 const { TextArea } = Input;
 
 const FormClient = () => {
+  const form = useForm();
+  const { control, handleSubmit } = form;
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="md:ml-6 h-100">
       <div className="text-2xl pb-10 font-bold uppercase text-gray-600 ">
         Quản lí khách hàng
       </div>
       <div className="bg-white w-full dark:text-gray-200 dark:bg-secondary-dark-bg p-10 rounded-2xl">
-        <form className="flex gap-5 flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex gap-5 flex-col">
           <div className="flex gap-5 flex-col">
             <div className="flex sm:flex-row flex-col sm:gap-6 gap-3">
               <lable className="text-base flex items-center gap-1 w-44 leading-8 text-zinc-600">
                 Tên trang web
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Input placeholder="Nhập tên trang web" />
+                <InputForm control={control} name='urlname' placeholder="Nhập tên trang web" />
               </div>
             </div>
 
@@ -29,7 +40,7 @@ const FormClient = () => {
                 Domain
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Input placeholder="Nhập domain" />
+                <InputForm control={control} placeholder="Nhập domain" name='url' />
               </div>
             </div>
 
@@ -38,7 +49,7 @@ const FormClient = () => {
                 Tên công ty
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Input placeholder="Nhập tên công ty" />
+                <InputForm control={control} name='company' placeholder="Nhập tên công ty" />
               </div>
             </div>
 
@@ -47,7 +58,7 @@ const FormClient = () => {
                 Số điện thoại
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Input type="number" placeholder="Nhập số điện thoại" />
+                <InputForm  control={control} name='phone'  placeholder="Nhập số điện thoại" />
               </div>
             </div>
 
@@ -56,8 +67,10 @@ const FormClient = () => {
                 Tên sản phẩm
               </lable>
               <div className="sm:w-1/5 w-full">
-                <Select
-                  style={{ width: "100%" }}
+                <SelectForm
+                  control={control}
+                  name="nameproduct"
+                  className='w-full'
                   defaultValue={1}
                   options={[
                     { value: 1, label: "BASIC" },
@@ -74,7 +87,9 @@ const FormClient = () => {
                 Thời gian sử dụng
               </lable>
               <div className="sm:w-1/5 w-full">
-                <RangePicker />
+                <DateForm  control={control}
+                  name="dateuse"/>
+                {/* <RangePicker /> */}
               </div>
             </div>
 
@@ -83,9 +98,11 @@ const FormClient = () => {
                 Sử dụng site
               </lable>
               <div className="sm:w-1/5 w-full">
-                <Select
-                  style={{ width: "100%" }}
-                  defaultValue={1}
+                 <SelectForm
+                  control={control}
+                  name="usesite"
+                  className='w-full'
+                   defaultValue={1}
                   options={[
                     { value: 1, label: "Đang chuẩn bị" },
                     { value: 2, label: "Đang vận hành" },
@@ -93,6 +110,7 @@ const FormClient = () => {
                     { value: 4, label: "Đóng cửa" },
                   ]}
                 />
+              
               </div>
             </div>
 
@@ -101,10 +119,16 @@ const FormClient = () => {
                 Sử dụng CDN
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Radio.Group defaultValue={false} name="status">
+                <RadioForm  control={control}
+                  options={[
+                    { value: true, label: "Sử dụng" },
+                    { value: false, label: "Không sử dụng" },
+                  
+                  ]} defaultValue={false}  name="status" />
+                {/* <Radio.Group defaultValue={false} name="status">
                   <Radio value={true}>Sử dụng</Radio>
                   <Radio value={false}>Không sử dụng</Radio>
-                </Radio.Group>
+                </Radio.Group> */}
               </div>
             </div>
 
@@ -113,14 +137,38 @@ const FormClient = () => {
                 Sử dụng người quản lí
               </lable>
               <div className="sm:w-1/2 w-full">
-                <Radio.Group defaultValue={false} name="status">
+                <RadioForm  control={control}
+                  options={[
+                    { value: true, label: "Sử dụng" },
+                    { value: false, label: "Tạm ngừng" },
+                  
+                  ]} defaultValue={false}  name="userstatus" />
+                {/* <Radio.Group defaultValue={false} name="status">
                   <Radio value={true}>Sử dụng</Radio>
                   <Radio value={false}>Tạm ngừng</Radio>
-                </Radio.Group>
+                </Radio.Group> */}
               </div>
             </div>
 
             <div className="flex sm:flex-row flex-col sm:gap-6 gap-3 sm:items-center">
+              <lable className="text-base flex items-center gap-1 w-44 leading-8 text-zinc-600">
+                Phát hành tự động
+              </lable>
+              <div className="sm:w-1/2 w-full">
+                 <RadioForm  control={control}
+                  options={[
+                    { value: true, label: "Sử dụng" },
+                    { value: false, label: "Tạm ngừng" },
+                  
+                  ]} defaultValue={false}  name="autostatus" />
+                {/* <Radio.Group defaultValue={false} name="status">
+                  <Radio value={true}>Sử dụng</Radio>
+                  <Radio value={false}>Không sử dụng</Radio>
+                </Radio.Group> */}
+              </div>
+            </div>
+
+            {/* <div className="flex sm:flex-row flex-col sm:gap-6 gap-3 sm:items-center">
               <lable className="text-base flex items-center gap-1 w-44 leading-8 text-zinc-600">
                 Phát hành tự động
               </lable>
@@ -130,25 +178,13 @@ const FormClient = () => {
                   <Radio value={false}>Không sử dụng</Radio>
                 </Radio.Group>
               </div>
-            </div>
-
-            <div className="flex sm:flex-row flex-col sm:gap-6 gap-3 sm:items-center">
-              <lable className="text-base flex items-center gap-1 w-44 leading-8 text-zinc-600">
-                Phát hành tự động
-              </lable>
-              <div className="sm:w-1/2 w-full">
-                <Radio.Group defaultValue={false} name="status">
-                  <Radio value={true}>Sử dụng</Radio>
-                  <Radio value={false}>Không sử dụng</Radio>
-                </Radio.Group>
-              </div>
-            </div>
+            </div> */}
             <div className="flex sm:flex-row flex-col sm:gap-6 gap-3 sm:items-center">
               <lable className="text-base flex items-center gap-1 w-44 leading-8 text-zinc-600">
                 Thông tin khác
               </lable>
               <div className="sm:w-1/2 w-full">
-                <TextArea rows={5} />
+                <TextareaForm rows={5}  control={control} name="information" />
               </div>
             </div>
 
@@ -157,11 +193,17 @@ const FormClient = () => {
                 Sử dung thong báo popup
               </lable>
               <div className="sm:w-1/2 flex flex-col gap-3 w-full">
-                <Radio.Group defaultValue={false}>
+                 <RadioForm  control={control}
+                  options={[
+                    { value: true, label: "Sử dụng" },
+                    { value: false, label: "Tạm ngừng" },
+                  
+                  ]} defaultValue={false}  name="popupstatus" />
+                {/* <Radio.Group defaultValue={false}>
                   <Radio value={true}>Sử dụng</Radio>
                   <Radio value={false}>Không sử dụng</Radio>
-                </Radio.Group>
-                <TextArea rows={5} />
+                </Radio.Group> */}
+                <TextArea rows={5} control={control} name="informationreason" />
               </div>
             </div>
           </div>
@@ -176,7 +218,7 @@ const FormClient = () => {
                 <BsListStars />
               </button>
               <button
-                type="button"
+                type="submit"
                 className="rounded-lg px-4 flex text-sm items-center gap-1 py-2 bg-blue-500 text-white hover:bg-blue-600 duration-300"
               >
                 <span>Lưu</span>

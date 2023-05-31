@@ -7,8 +7,8 @@ const Login = () => {
   const navigate = useNavigate();
   const login = [
     {
-      username: "test123",
-      password: "654123",
+      username: "admin",
+      password: "123456",
       role: 0,
       name: "Jay Park",
     },
@@ -33,7 +33,7 @@ const Login = () => {
       setIsError(true);
       return;
     }
-
+    
     localStorage.setItem("isLogin", true);
     localStorage.setItem("role", user.role);
     localStorage.setItem("name", user.name);

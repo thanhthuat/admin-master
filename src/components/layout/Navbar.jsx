@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useStateContext } from "../../contexts/ContextProvider";
 import { MdOutlineLogout } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  ,useLocation} from "react-router-dom";
 
 const Navbar = () => {
   const { activeMenu, setActiveMenu, setScreenSize, screenSize } =
     useStateContext();
   const navigate = useNavigate();
+   let location = useLocation();
   const name = localStorage.getItem("name");
   const handleLogout = () => {
     navigate("/login");
@@ -35,6 +36,11 @@ const Navbar = () => {
       setActiveMenu(true);
     }
   }, [screenSize]);
+    useEffect(() => {
+      if(activeMenu && screenSize <= 1080){
+        setActiveMenu(!activeMenu);
+      }
+  }, [location?.pathname]);
   return (
     <div className="flex  justify-between navbar px-12 h-12 mb-3  w-full bg-white">
       <div className="flex items-center justify-center">

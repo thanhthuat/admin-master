@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useStateContext } from "../../contexts/ContextProvider";
 import TableDataCustom from "../../components/common/TableDataCustom";
 import { Link } from "react-router-dom";
+import SearchFillterCreateNews from "./search-fillter";
 
 const columns = [
   {
@@ -69,8 +70,9 @@ const CreateNews = () => {
       <div className="text-2xl pb-10 font-bold uppercase text-gray-600 ">
         Đăng kí news
       </div>
-      <div
-        style={{ borderColor: currentColor }}
+      <SearchFillterCreateNews/>
+      {/* <div
+        // style={{ borderColor: currentColor }}
         className="w-full border-t-4 2xl:flex-nowrap flex-wrap text-sm border-y-3 border-y-teal-300 flex gap-7 items-center bg-white p-6"
       >
         <div className="flex justify-between items-center gap-3 2xl:w-1/4 md:w-1/3 w-full">
@@ -114,7 +116,7 @@ const CreateNews = () => {
             <AiOutlineSearch />
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-white border-t-4 my-6 ">
         <TableDataCustom defaultPageSize={15} columns={columns} />

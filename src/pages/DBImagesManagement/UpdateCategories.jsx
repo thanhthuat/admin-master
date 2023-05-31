@@ -93,22 +93,23 @@ const UpdateCategories = () => {
     setSeletedCategory(0);
     setArrCategoriesLevel2([]);
   };
+ 
   const buttonGroups = (
     <div className="grid 2xl:grid-cols-4 xl:grid-cols-2  gap-3 mt-3">
       <button className="rounded-lg border hover:bg-gray-300 px-4 flex  text-sm items-center gap-1 py-2 bg-gray-300 text-white-100   justify-center duration-300">
-        <span>Lên trên</span>
+        <span>Thay đổi</span>
       </button>
       <button className="rounded-lg border hover:bg-gray-300 px-4 flex text-sm items-center gap-1 py-2 bg-gray-300 text-white-100   justify-center duration-300">
-        <span>Xuống dưới</span>
+        <span>Bổ sung</span>
       </button>
       <button className="rounded-lg border hover:bg-gray-300 px-4 flex text-sm items-center gap-1 py-2 bg-gray-300 text-white-100   justify-center duration-300">
-        <span>Thêm mới</span>
+        <span>Hủy bỏ</span>
       </button>
       <button
         onClick={handleCancleParentcategories}
         className="rounded-lg border hover:bg-gray-300 px-4 flex text-sm justify-center items-center gap-1 py-2 bg-gray-300 text-white-100   duration-300"
       >
-        <span>Xóa</span>
+        <span>Vị trí </span>
       </button>
     </div>
   );
